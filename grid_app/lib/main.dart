@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grid_app/View/grid_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home:const GridViews()));
 }
 
 class MyApp extends StatelessWidget {

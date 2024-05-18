@@ -24,7 +24,7 @@ class _GridViewsState extends State<GridViews> {
         ],
       ),
       body: Container(
-        child: GridGet(name: get[index],),
+        child: GridGet(),
       ),
     );
   }

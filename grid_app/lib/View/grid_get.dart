@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grid_app/Model/grid_list.dart';
 
 class GridGet extends StatefulWidget {
-  const GridGet({super.key, required this.name,required this.price,required this.link});
+  const GridGet({super.key,});
 
-  final String name;
-  final String price;
-  final String link;
 
   @override
   State<GridGet> createState() => _GridGetState();
@@ -19,19 +16,20 @@ class _GridGetState extends State<GridGet> {
 
 
     return GridView.builder(
+      itemCount: get.length,
         itemBuilder: (context, index) {
           return Card(
             child: Column(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(10)),
-                  child: Image.network(get[index]),
+                  child: Image.network(get[index].link),
                   
                 ),
                 Padding(padding: EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text(widget.name),Text(widget.price)],
+                  children: [Text(get[index].name),Text(get[index].price)],
                 ),
                 
                 )

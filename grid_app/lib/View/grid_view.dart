@@ -15,11 +15,12 @@ class _GridViewsState extends State<GridViews> {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('GridView'),
+        title: const Text('GridView',style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.black,
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(Icons.shopping_bag),
           ),
         ],
       ),

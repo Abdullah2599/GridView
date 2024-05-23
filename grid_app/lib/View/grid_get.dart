@@ -44,7 +44,7 @@ void initState(){
     return Scaffold(
 appBar: 
       AppBar(
-        title: const Text('GridView',style: TextStyle(color: Colors.white),),
+        title: const Text('Shopping Hub',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.black,
         actions: [
           IconButton(
@@ -59,9 +59,9 @@ appBar:
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                ProdDetails(title: prodData[index]["title"], price: "\$${prodData[index]["price"].toString()}", image: prodData[index]["image"]);
-              },));
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                ProdDetails(title: prodData[index]["title"], price: "\$${prodData[index]["price"].toString()}", image: prodData[index]["image"])
+              ));
           
             },
             child: Card(

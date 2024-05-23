@@ -5,7 +5,7 @@ import 'package:grid_app/View/homepage.dart';
 void main() {
   runApp(MaterialApp(home:Scaffold(
       appBar: AppBar(
-        title: const Text('GridView',style: TextStyle(color: Colors.white),),
+        title: const Text('Shopping Hub',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.black,
         actions: [
           IconButton(

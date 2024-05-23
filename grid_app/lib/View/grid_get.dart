@@ -55,7 +55,7 @@ void initState(){
                   ),
                   child: Image.network(prodData[index]["image"],height: 105,),
                 ),
-                SiedBox(height: 5,),
+                SizedBox(height: 5,),
                  SizedBox(
                   width: 100,
                   height: 35,

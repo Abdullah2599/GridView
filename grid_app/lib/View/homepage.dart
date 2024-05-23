@@ -15,12 +15,12 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          Text('Shopping Hub', style: TextStyle(
+          const Text('Shopping Hub', style: TextStyle(
             fontSize: 35,
             fontWeight: FontWeight.bold,
           
           ),),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           OutlinedButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => GridGet(),));
           }, 

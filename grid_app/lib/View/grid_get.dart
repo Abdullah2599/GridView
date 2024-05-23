@@ -42,7 +42,7 @@ void initState(){
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-appBar: 
+    appBar: 
       AppBar(
         title: const Text('Shopping Hub',style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.black,

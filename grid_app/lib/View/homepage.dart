@@ -20,11 +20,13 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.bold,
           
           ),),
-          const SizedBox(height: 10,),
-          OutlinedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => GridGet(),));
+          const SizedBox(height: 20,),
+          OutlinedButton(
+           
+            onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const GridGet(),));
           }, 
-          child: Text('Discover'))
+          child: const Text('Discover'))
           ]
         ),
       );

@@ -78,17 +78,21 @@ void initState(){
                       child: Image.network(prodData[index]["image"],height: 105,),
                     ),
                     const SizedBox(height: 5,),
-                     SizedBox(
-                      width: 100,
-                      height: 35,
-                      child: Text(
-                        textAlign: TextAlign.left,
-                        prodData[index]["title"],
-                        style: const TextStyle(fontSize: 10,
-                        fontWeight: FontWeight.bold,
+                     Expanded(
+                      // width: 100,
+                      // height: 35,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
                           
-                        ),
-                        )), 
+                          textAlign: TextAlign.left,
+                          prodData[index]["title"],
+                          style: const TextStyle(fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                            
+                          ),
+                          ),
+                      )), 
                        
                         Text("\$${prodData[index]["price"].toString()}"),
                 

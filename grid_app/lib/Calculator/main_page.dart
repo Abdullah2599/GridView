@@ -104,15 +104,15 @@ class _MainViewState extends State<MainView> {
                   return GestureDetector(
                     onTap: () => buttonPressed(buttonText),
                     child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: buttonText == '=' ? Colors.green : Colors.red,
+                      ),
                       child: Center(
                         child: Text(
                           buttonText,
                           style: const TextStyle(fontSize: 20),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: buttonText == '=' ? Colors.green : Colors.red,
                       ),
                     ),
                   );

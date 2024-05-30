@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:grid_app/Calculator/main_page.dart';
+import 'package:grid_app/form/form.dart';
 // import 'package:grid_app/View/grid_view.dart';
 // import 'package:grid_app/View/homepage.dart';
 
 void main() {
-  runApp (const MaterialApp(home: MainView()
+  runApp (const MaterialApp(home: MyWidget()
   //     home: Scaffold(
   //   appBar: AppBar(
   //     title: const Text(

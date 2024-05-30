@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 // final GlobalKey<bool>;
 
 class MyWidget extends StatefulWidget {
@@ -13,18 +12,14 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   final nameController = TextEditingController();
   final passController = TextEditingController();
-  GlobalKey<FormState> form_key =GlobalKey<FormState>();
+  GlobalKey<FormState> form_key = GlobalKey<FormState>();
 
-void _onSubmit(){
-if(form_key.currentState!.validate()){
-    print(nameController.text);
-    print(passController.value);
-
-}
-  
-
-
-}
+  void _onSubmit() {
+    if (form_key.currentState!.validate()) {
+      print(nameController.text);
+      print(passController.value);
+    }
+  }
 
   @override
   void dispose() {
@@ -33,24 +28,22 @@ if(form_key.currentState!.validate()){
     super.dispose();
   }
 
-bool passwordVisible=false;
+  bool passwordVisible = false;
 
-  @override 
-    void initState(){ 
-      super.initState(); 
-      passwordVisible=true; 
-    }     
- 
- Icon _buildVisibilityIcon() {
-  return Icon(
-    passwordVisible 
-      ? Icons.visibility
-      : Icons.visibility_off,
-  );
-}
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible = true;
+  }
+
+  Icon _buildVisibilityIcon() {
+    return Icon(
+      passwordVisible ? Icons.visibility : Icons.visibility_off,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Text("Form Sample"),
@@ -62,61 +55,60 @@ bool passwordVisible=false;
             key: form_key,
             child: Column(
               children: [
-                 Padding(
-                   padding: const EdgeInsets.all(8.0),
-                   child: TextFormField(
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
                     controller: nameController,
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
-                     
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       prefixIcon: Icon(Icons.person),
                       labelText: 'Name',
                     ),
-                    ),
-                 ),
-                  SizedBox(height: 12,),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
+                    validator: (value) {
+                      if (nameController.text.isEmpty) {
+                        return 'Name is Required';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
                     obscureText: passwordVisible,
                     controller: passController,
                     keyboardType: TextInputType.visiblePassword,
                     validator: (value) {
-                      if(nameController.text.isEmpty){
-                           return 'Name is Required';
-                        }
-                        else{
-                          null;
-                        }
+                      if (passController.text.isEmpty) {
+                        return 'Password is Required';
+                      } else {
+                        return null;
+                      }
                     },
-                    decoration: const InputDecoration(
-                         
-                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.person),
-                    suffixIcon: IconButton(
-                      icon: _buildVisibilityIcon,
-                       onPressed: () {
-                         setState(
-                           () {
-                            
-                             passwordVisible = !passwordVisible;
-                           }
-                         );
-                       }
-                         ),
-                    ),
-                    
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      labelText: 'Password',
+                      prefixIcon: Icon(Icons.person),
+                      suffixIcon: IconButton(
+                          icon: _buildVisibilityIcon(),
+                          onPressed: () {
+                            setState(() {
+                              passwordVisible = !passwordVisible;
+                            });
+                          }),
                     ),
                   ),
-                  TextButton(
-                    
-                    onPressed: _onSubmit, 
-                    child: const Text("Submit"))
+                ),
+                TextButton(onPressed: _onSubmit, child: const Text("Submit"))
               ],
-
             ),
           ),
         ),

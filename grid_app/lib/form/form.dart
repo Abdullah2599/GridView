@@ -18,14 +18,35 @@ class _MyWidgetState extends State<MyWidget> {
   final passController = TextEditingController();
   final emailController = TextEditingController();
 
-  GlobalKey<FormState> form_key =GlobalKey<FormState>();
+  GlobalKey<FormState> formKey =GlobalKey<FormState>();
 
 
 
+  List<dynamic> dataList = [];
 
+  Future<void> fetchData() async {
+    var response = await http.get(Uri.parse("http://localhost:82/api/addData.php"));
+    if (response.statusCode == 200) {
+      setState(() {
+        dataList = jsonDecode(response.body)['data'];
+      });
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible=true; 
+    fetchData();
+  }
+
+
+   
 
 Future<void> _onSubmit() async{
-if(form_key.currentState!.validate()){
+if(formKey.currentState!.validate()){
 
 
 
@@ -79,11 +100,11 @@ void subm(){
 
 bool passwordVisible=false;
 
-  @override 
-    void initState(){ 
-      super.initState(); 
-      passwordVisible=true; 
-    }     
+  // @override 
+  //   void initState(){ 
+  //     super.initState(); 
+  //     passwordVisible=true; 
+  //   }     
  
  Icon _buildVisibilityIcon() {
   return Icon(
@@ -103,7 +124,7 @@ bool passwordVisible=false;
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: form_key,
+            key: formKey,
             child: Column(
               children: [
                  Padding(
@@ -119,6 +140,7 @@ bool passwordVisible=false;
                         else{
                           null;
                         }
+                      return null;
                     },
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -143,6 +165,7 @@ bool passwordVisible=false;
                         else{
                           null;
                         }
+                      return null;
                     },
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -167,6 +190,7 @@ bool passwordVisible=false;
                         else{
                           null;
                         }
+                      return null;
                     },
                     decoration: InputDecoration(
                          
@@ -193,12 +217,28 @@ bool passwordVisible=false;
                     style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 0, 0, 0))),
                     onPressed: subm, 
                     
-                    child: const Text("Submit",style: TextStyle(color: Colors.white),))
+                    child: const Text("Submit",style: TextStyle(color: Colors.white),)),
+
+                   const SizedBox(height: 20),
+           
+            const SizedBox(height: 20),
+            Expanded(
+             child: ListView.builder(
+                  itemCount: dataList.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(dataList[index]['name']),
+                      subtitle: Text(dataList[index]['email']),
+                    );
+  })
+            )
+                   
               ],
 
             ),
           ),
         ),
+        
       ),
     );
   }

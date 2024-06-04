@@ -20,7 +20,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     http_response_code(404);
     echo json_encode(array("message"=>"failed"));
    }
+};
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $sql = "SELECT * FROM flutter_api";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        http_response_code(200);
+        echo json_encode(array("message" => "Success", "data" => $data));
+    } else {
+        http_response_code(404);
+        echo json_encode(array("message" => "Failed to fetch data"));
+    }
 }
+
+
+
 
 
 
